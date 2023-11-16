@@ -39,7 +39,7 @@ COPY . .
 RUN composer install && composer clear-cache && composer dump-autoload
 RUN npm install
 # RUN npm run build
-# RUN cp -r assets/fonts public/build
+RUN cp -r assets/template public/assets
 
 EXPOSE 8000
 
