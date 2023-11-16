@@ -33,7 +33,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN export PATH="$HOME/.symfony5/bin:$PATH"
 # Copy the application code to the container
 COPY . .
-RUN mv envdata .env
+#RUN mv envdata .env
 
 # Install application dependencies
 RUN composer install && composer clear-cache && composer dump-autoload
