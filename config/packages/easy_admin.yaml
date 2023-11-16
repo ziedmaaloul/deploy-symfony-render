@@ -1,0 +1,9 @@
+# config/packages/easy_admin.yaml
+
+easy_admin:
+    design:
+        menu:
+            - { entity: 'App\Entity\Produit' }
+            - { entity: 'App\Entity\Commande' }
+            - { entity: 'App\Entity\Fournisseur' }
+            - { entity: 'App\Entity\CommandeLigne' }
