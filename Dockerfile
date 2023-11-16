@@ -38,8 +38,8 @@ COPY . .
 # Install application dependencies
 RUN composer install && composer clear-cache && composer dump-autoload
 RUN npm install
-RUN npm run build
-RUN cp -r assets/fonts public/build
+# RUN npm run build
+# RUN cp -r assets/fonts public/build
 
 EXPOSE 8000
 
