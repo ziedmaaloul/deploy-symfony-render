@@ -24,23 +24,23 @@ class ProduitType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->add('libelle', TextType::class, [
-            'label' => 'Text',
+            'label' => 'Nom de produit',
             'attr' => ['class' => 'form-control'],
         ])
         ->add('image', FileType::class, [
-            'label' => 'File Upload',
+            'label' => 'Image',
             'attr' => ['class' => 'form-control'],
         ])
         ->add('quantity', NumberType::class, [
-            'label' => 'Number',
+            'label' => 'Quantité',
             'attr' => ['class' => 'form-control'],
         ])
         ->add('price', NumberType::class, [
-            'label' => 'Number',
+            'label' => 'Prix',
             'attr' => ['class' => 'form-control'],
         ])
         ->add('fournisseur', ChoiceType::class, [
-            'label' => 'Select',
+            'label' => 'Fournissuer',
             'choices' => [
                 'Option 1' => 'option1',
                 'Option 2' => 'option2',

@@ -11,11 +11,22 @@ class FournisseurType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder
-            ->add('nom')
-            ->add('adresse')
-            ->add('telephone')
-        ;
+        $builder->add('nom', TextType::class, [
+            'label' => 'Raison Sociale',
+            'attr' => ['class' => 'form-control'],
+        ])
+        ->add('adresse', TextType::class, [
+            'label' => 'Raison Sociale',
+            'attr' => ['class' => 'form-control'],
+        ])
+        ->add('telephone', TextType::class, [
+            'label' => 'Téléphone',
+            'attr' => ['class' => 'form-control'],
+        ])
+        ->add('fax', TextType::class, [
+            'label' => 'Fax',
+            'attr' => ['class' => 'form-control'],
+        ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
