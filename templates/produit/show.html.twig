@@ -1,9 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Produit{% endblock %}
+{% block title %}Produit: {{ produit.id }} - {{ produit.libelle }}{% endblock %}
 
 {% block body %}
-    <h1>Produit</h1>
 
     <table class="table">
         <tbody>
