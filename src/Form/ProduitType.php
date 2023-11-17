@@ -37,7 +37,7 @@ class ProduitType extends AbstractType
         $fournisseurData = [];
         if($fournisseurs){
             foreach($fournisseurs as $fournisseur){
-                $fournisseurData[$fournisseur->getId()] = $fournisseur->getNom();
+                $fournisseurData[$fournisseur->getNom()] = $fournisseur->getId();
             }
         }
 
