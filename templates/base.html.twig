@@ -35,24 +35,19 @@
 		href="/assets/css/style.css" rel="stylesheet">
 
 	<!-- =======================================================
-	  * Template Name: NiceAdmin
-	  * Updated: Sep 18 2023 with Bootstrap v5.3.2
-	  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-	  * Author: BootstrapMade.com
-	  * License: https://bootstrapmade.com/license/
-	  ======================================================== -->
+		  * Template Name: NiceAdmin
+		  * Updated: Sep 18 2023 with Bootstrap v5.3.2
+		  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+		  * Author: BootstrapMade.com
+		  * License: https://bootstrapmade.com/license/
+		  ======================================================== -->
 	</head>
 
 	<body>
 
-		<!-- ======= Header ======= -->
-		{% include 'common/_header.html' %}
-		<!-- End Header -->
+		{% include 'common/_header.html.twig' %}
 
-		<!-- ======= Sidebar ======= -->
-		{% include 'common/_sidebar.html' %}
-
-		<!-- End Sidebar-->
+		{% include 'common/_sidebar.html.twig' %}
 
 		<main id="main" class="main">
 
@@ -67,23 +62,17 @@
 					</ol>
 				</nav>
 			</div>
-			<!-- End Page Title -->
 
 			{% block body %}{% endblock %}
 
 		</main>
-		<!-- End #main -->
 
-		<!-- ======= Footer ======= -->
-        {% include 'common/_footer.html' %}
-		
-		<!-- End Footer -->
+		{% include 'common/_footer.html.twig' %}
 
 		<a href="#" class="back-to-top d-flex align-items-center justify-content-center">
 			<i class="bi bi-arrow-up-short"></i>
 		</a>
 
-		<!-- Vendor JS Files -->
 		<script src="/assets/vendor/apexcharts/apexcharts.min.js"></script>
 		<script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 		<script src="/assets/vendor/chart.js/chart.umd.js"></script>
@@ -93,7 +82,6 @@
 		<script src="/assets/vendor/tinymce/tinymce.min.js"></script>
 		<script src="/assets/vendor/php-email-form/validate.js"></script>
 
-		<!-- Template Main JS File -->
 		<script src="/assets/js/main.js"></script>
 
 	</body>
