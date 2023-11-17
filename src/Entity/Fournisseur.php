@@ -30,6 +30,9 @@ class Fournisseur
     #[ORM\OneToMany(mappedBy: 'fournisseur', targetEntity: Commande::class)]
     private Collection $commandes;
 
+    #[ORM\Column(length: 255)]
+    private ?string $fax = null;
+
     public function __construct()
     {
         $this->produits = new ArrayCollection();
@@ -133,6 +136,18 @@ class Fournisseur
                 $commande->setFournisseur(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getFax(): ?string
+    {
+        return $this->fax;
+    }
+
+    public function setFax(string $fax): static
+    {
+        $this->fax = $fax;
 
         return $this;
     }
