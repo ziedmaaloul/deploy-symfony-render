@@ -35,7 +35,7 @@ class CommandeType extends AbstractType
             ->add('datecomm')
             ->add('fournisseur', ChoiceType::class, [
                 'label' => 'Fournissuer',
-                'choices' => $fournisseurData,
+                'choices' => $this->fournisseurData,
                 'attr' => ['class' => 'form-select'],
             ])
             ->add('commandeLignes', CollectionType::class, [

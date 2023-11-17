@@ -60,7 +60,7 @@ class ProduitType extends AbstractType
         ])
         ->add('fournisseur', ChoiceType::class, [
             'label' => 'Fournissuer',
-            'choices' => $fournisseurData,
+            'choices' => $this->fournisseurData,
             'attr' => ['class' => 'form-select'],
         ]);
     }
