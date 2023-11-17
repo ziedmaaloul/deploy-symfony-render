@@ -5,9 +5,6 @@
 	<main>
 		<div class="container">
 
-			{% if error %}
-				<div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-			{% endif %}
 
 			<section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
 				<div class="container">
@@ -25,7 +22,12 @@
 							<div class="card mb-3">
 
 								<div class="card-body">
-
+									{% if error %}
+										<div class="alert alert-danger bg-danger text-light border-0 alert-dismissible fade show" role="alert">
+											{{ error.messageKey|trans(error.messageData, 'security') }}
+											<button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+										</div>
+									{% endif %}
 									<div class="pt-4 pb-2">
 										<h5 class="card-title text-center pb-0 fs-4">Login to Your Account</h5>
 										<p class="text-center small">Enter your username & password to login</p>
