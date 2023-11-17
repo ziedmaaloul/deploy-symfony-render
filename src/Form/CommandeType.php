@@ -6,6 +6,7 @@ use App\Entity\Commande;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class CommandeType extends AbstractType
 {
@@ -14,6 +15,12 @@ class CommandeType extends AbstractType
         $builder
             ->add('datecomm')
             ->add('fournisseur')
+            ->add('commandeLignes', CollectionType::class, [
+                'entry_type' => CommandeLigneType::class,
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
+            ]);
         ;
     }
 
