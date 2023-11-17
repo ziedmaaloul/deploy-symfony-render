@@ -24,22 +24,23 @@ class ProduitType extends AbstractType
 {
 
     private $fournisseurRepository = null;
+    private array $fournisseurData = [];
+
     public function __construct(FournisseurRepository $fournisseurRepository)
     {
         $this->fournisseurRepository = $fournisseurRepository;
+
+        $fournisseurs = $this->fournisseurRepository->findAll();
+
+        if($fournisseurs){
+            foreach($fournisseurs as $fournisseur){
+                $this->fournisseurData[$fournisseur->getNom()] = $fournisseur->getId();
+            }
+        }
     }
     
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-
-        $fournisseurs = $this->fournisseurRepository->findAll();
-
-        $fournisseurData = [];
-        if($fournisseurs){
-            foreach($fournisseurs as $fournisseur){
-                $fournisseurData[$fournisseur->getNom()] = $fournisseur->getId();
-            }
-        }
 
         $builder->add('libelle', TextType::class, [
             'label' => 'Nom de produit',
