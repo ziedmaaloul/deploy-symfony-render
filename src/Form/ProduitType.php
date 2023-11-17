@@ -32,7 +32,15 @@ class ProduitType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
 
-        dd($this->fournisseurRepository->findAll());
+        $fournisseurs = $this->fournisseurRepository->findAll();
+
+        $fournisseurData = [];
+        if($fournisseurs){
+            foreach($fournisseurs as $fournisseur){
+                $fournisseurData[$fournisseur->getId()] = $fournisseur->getNom();
+            }
+        }
+
         $builder->add('libelle', TextType::class, [
             'label' => 'Nom de produit',
             'attr' => ['class' => 'form-control'],
@@ -51,11 +59,7 @@ class ProduitType extends AbstractType
         ])
         ->add('fournisseur', ChoiceType::class, [
             'label' => 'Fournissuer',
-            'choices' => [
-                'Option 1' => 'option1',
-                'Option 2' => 'option2',
-                'Option 3' => 'option3',
-            ],
+            'choices' => $fournisseurData,
             'attr' => ['class' => 'form-select'],
         ]);
     }
