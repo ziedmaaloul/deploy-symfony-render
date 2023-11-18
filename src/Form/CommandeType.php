@@ -43,7 +43,7 @@ class CommandeType extends AbstractType
                 'entry_type' => CommandeLigneType::class,
                 'allow_add' => true,
                 'allow_delete' => true,
-                'by_reference' => false,
+                'by_reference' => true,
             ]);
     }
 
