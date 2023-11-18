@@ -1,12 +1,18 @@
+{# templates/commande/new.html.twig #}
+
 {% extends 'base.html.twig' %}
 
-{% block title %}New Commande
-{% endblock %}
-
 {% block body %}
-	<h1>Create new Commande</h1>
+    <h1>Create a new Commande</h1>
 
-	{{ include('commande/_form.html.twig') }}
+    {{ form_start(form) }}
+    {{ form_row(form.datecomm) }}
+    {{ form_row(form.fournisseur) }}
 
-	<a href="{{ path('app_commande_index') }}">back to list</a>
+    <h2>Command Lines</h2>
+    {{ form_errors(form.commandLines) }}
+    {{ form_widget(form.commandLines) }}
+
+    <button type="submit">Save</button>
+    {{ form_end(form) }}
 {% endblock %}
