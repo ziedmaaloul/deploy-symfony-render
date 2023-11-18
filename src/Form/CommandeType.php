@@ -24,7 +24,7 @@ class CommandeType extends AbstractType
 
         if($fournisseurs){
             foreach($fournisseurs as $fournisseur){
-                $this->fournisseurData[$fournisseur->getNom()] = $fournisseur->getId();
+                $this->fournisseurData[] = $fournisseur;
             }
         }
     }
