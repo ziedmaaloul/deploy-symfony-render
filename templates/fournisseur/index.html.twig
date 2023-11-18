@@ -1,18 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Tous les Fournisseur
+{% block title %}Tous les Fournisseurs
 {% endblock %}
 
 {% block body %}
 
-	<a href="{{ path('app_fournisseur_new') }}" class="btn btn-primary">Create new</a>
+	<a href="{{ path('app_fournisseur_new') }}" class="btn btn-primary">Créer un nouveau</a>
 	<table class="table datatable">
 		<thead>
 			<tr>
 				<th>#</th>
 				<th>Nom</th>
 				<th>Adresse</th>
-				<th>Telephone</th>
+				<th>Téléphone</th>
 				<th>Fax</th>
 				<th>Actions</th>
 			</tr>
@@ -39,11 +39,10 @@
 				</tr>
 			{% else %}
 				<tr>
-					<td colspan="5">no records found</td>
+					<td colspan="5">Aucun enregistrement trouvé</td>
 				</tr>
 			{% endfor %}
 		</tbody>
 	</table>
-
 
 {% endblock %}

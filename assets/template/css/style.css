@@ -22,6 +22,10 @@ body {
 
 }
 
+.make-right {
+  margin-left: 4px;
+}
+
 .display-flex{
   display: flex;
 }
