@@ -5,14 +5,14 @@
 
 {% block body %}
 
-<a href="{{ path('app_produit_new') }}">Create new</a>
+<a href="{{ path('app_produit_new') }}" class="btn btn-primary">Create new</a>
 
 
 
-	<table class="table">
+	<table class="table datatable">
 		<thead>
 			<tr>
-				<th>Id</th>
+				<th>#</th>
 				<th>Libelle</th>
 				<th>Image</th>
 				<th>Quantity</th>
@@ -23,13 +23,12 @@
 		<tbody>
 			{% for produit in produits %}
 				<tr>
-					<td>{{ produit.id }}</td>
+					<td><a href="{{ path('app_produit_show', {'id': produit.id}) }}">{{ produit.id }}</a></td>
 					<td>{{ produit.libelle }}</td>
 					<td>{{ produit.image }}</td>
 					<td>{{ produit.quantity }}</td>
 					<td>{{ produit.price }}</td>
 					<td>
-						<a href="{{ path('app_produit_show', {'id': produit.id}) }}">show</a>
 						<a href="{{ path('app_produit_edit', {'id': produit.id}) }}">edit</a>
 					</td>
 				</tr>
