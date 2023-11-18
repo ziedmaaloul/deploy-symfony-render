@@ -38,6 +38,7 @@ class CommandeType extends AbstractType
                 'label' => 'Fournissuer',
                 'choices' => $this->fournisseurData,
                 'attr' => ['class' => 'form-select'],
+                'choice_value' => 'id'
             ])
             ->add('commandeLignes', CollectionType::class, [
                 'entry_type' => CommandeLigneType::class,

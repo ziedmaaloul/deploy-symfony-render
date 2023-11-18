@@ -26,6 +26,8 @@
                 <td>{{ fournisseur.fax }}</td>
                 <td>
                     <a href="{{ path('app_fournisseur_edit', {'id': fournisseur.id}) }}" class="btn btn-success"><i class="bi bi-pencil"></i></a>
+
+                    {{ include('fournisseur/_delete_form.html.twig') }}
                 </td>
             </tr>
         {% else %}
