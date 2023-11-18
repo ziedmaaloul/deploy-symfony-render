@@ -19,7 +19,11 @@ body {
   color: #444444;
 }
 .center{
-  
+
+}
+
+.display-flex{
+  display: flex;
 }
 a {
   color: #4154f1;

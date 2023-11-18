@@ -5,8 +5,7 @@
 
 {% block body %}
 
-<a href="{{ path('app_produit_new') }}" class="btn btn-primary">Create new</a>
-
+	<a href="{{ path('app_produit_new') }}" class="btn btn-primary">Create new</a>
 
 
 	<table class="table datatable">
@@ -23,14 +22,22 @@
 		<tbody>
 			{% for produit in produits %}
 				<tr>
-					<td><a href="{{ path('app_produit_show', {'id': produit.id}) }}">{{ produit.id }}</a></td>
+					<td>
+						<a href="{{ path('app_produit_show', {'id': produit.id}) }}">{{ produit.id }}</a>
+					</td>
 					<td>{{ produit.libelle }}</td>
 					<td>{{ produit.image }}</td>
 					<td>{{ produit.quantity }}</td>
 					<td>{{ produit.price }}</td>
 					<td>
-                    <a href="{{ path('app_produit_edit', {'id': produit.id}) }}" class="btn btn-success"><i class="bi bi-pencil"></i></a>
-                    {{ include('produit/_delete_form.html.twig') }}
+
+						<div class="display-flex">
+							<a href="{{ path('app_produit_edit', {'id': produit.id}) }}" class="btn btn-success">
+								<i class="bi bi-pencil"></i>
+							</a>
+							{{ include('produit/_delete_form.html.twig') }}
+
+						</div>
 					</td>
 				</tr>
 			{% else %}
