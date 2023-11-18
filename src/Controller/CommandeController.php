@@ -26,11 +26,16 @@ class CommandeController extends AbstractController
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
 
-        if ($request->isMethod('POST')) {
-            $commande = $request->getParameters()["commande"];
-            dd($commande);
-            return $this->redirectToRoute('app_commande_index', [], Response::HTTP_SEE_OTHER);
-        }else{
+        // if ($request->isMethod('POST')) {
+        //     $commandeRequest = $request->getParameters()["commande"];
+
+        //     if($commandeRequest){
+        //         $commande = new Commande();
+        //         $commande->set
+        //     }
+        //     dd($commande);
+        //     return $this->redirectToRoute('app_commande_index', [], Response::HTTP_SEE_OTHER);
+        // }else{
 
             $commande = new Commande();
             $form = $this->createForm(CommandeType::class, $commande);
@@ -40,7 +45,7 @@ class CommandeController extends AbstractController
                 $entityManager->persist($commande);
                 $entityManager->flush(); 
             }
-        }
+        // }
         
 
         return $this->render('commande/new.html.twig', [
