@@ -35,12 +35,11 @@ class CommandeType extends AbstractType
     {
 
         $builder
-            ->add('fournisseur', ChoiceType::class, [
+            ->add('fournisseur', EntityType::class, [
                 'label' => 'Fournissuer',
                 'class' => Fournisseur::class, // Le nom de l'entité Fournisseur
                 'choice_label' => 'nom', // La propriété de l'entité à afficher dans le champ
                 'attr' => ['class' => 'form-select'],
-                'choice_value' => 'id', // La propriété de l'entité à utiliser comme valeur du choix
             ])
             ->add('commandeLignes', CollectionType::class, [
                 'entry_type' => CommandeLigneType::class,
