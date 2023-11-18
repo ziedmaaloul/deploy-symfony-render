@@ -10,9 +10,9 @@
     {{ form_row(form.fournisseur) }}
 
     <h2>Command Lines</h2>
-    <ul class="command-lines" data-prototype="{{ form_row(form.commandLines.vars.prototype)|e }}">
-        {{ form_errors(form.commandLines) }}
-        {{ form_widget(form.commandLines) | raw }}
+    <ul class="command-lines" data-prototype="{{ form_row(form.commandeLignes.vars.prototype)|e }}">
+        {{ form_errors(form.commandeLignes) }}
+        {{ form_widget(form.commandeLignes) | raw }}
     </ul>
 
     <button type="button" class="add-item">Add Command Line</button>
