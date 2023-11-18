@@ -1,4 +1,4 @@
-{# templates/commande/new.html.twig #}
+<!-- templates/commande/new.html.twig -->
 
 {% extends 'base.html.twig' %}
 
@@ -10,9 +10,26 @@
     {{ form_row(form.fournisseur) }}
 
     <h2>Command Lines</h2>
-    {{ form_errors(form.commandeLines) }}
-    {{ form_widget(form.commandeLines) }}
+    <ul class="command-lines" data-prototype="{{ form_row(form.commandLines.vars.prototype)|e }}">
+        {{ form_errors(form.commandLines) }}
+        {{ form_widget(form.commandLines) | raw }}
+    </ul>
 
+    <button type="button" class="add-item">Add Command Line</button>
     <button type="submit">Save</button>
     {{ form_end(form) }}
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var addButton = document.querySelector('.add-item');
+            var collectionHolder = document.querySelector('.command-lines');
+            var prototype = collectionHolder.getAttribute('data-prototype');
+            
+            addButton.addEventListener('click', function () {
+                var newItem = document.createElement('li');
+                newItem.innerHTML = prototype.replace(/__name__/g, collectionHolder.children.length);
+                collectionHolder.appendChild(newItem);
+            });
+        });
+    </script>
 {% endblock %}

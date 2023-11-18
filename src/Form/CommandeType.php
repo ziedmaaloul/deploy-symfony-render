@@ -39,11 +39,11 @@ class CommandeType extends AbstractType
                 'choices' => $this->fournisseurData,
                 'attr' => ['class' => 'form-select'],
             ])
-            ->add('commandeLignes', CollectionType::class, [
-                'entry_type' => CommandeLigneType::class,
+            ->add('commandLines', CollectionType::class, [
+                'entry_type' => CommandLineType::class,
                 'allow_add' => true,
                 'allow_delete' => true,
-                'by_reference' => true,
+                'by_reference' => false,
             ]);
     }
 
