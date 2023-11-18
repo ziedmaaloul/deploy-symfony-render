@@ -14,7 +14,7 @@ class CommandeLigneType extends AbstractType
         $builder
             ->add('quantity')
             ->add('produit')
-            ->add('commande')
+            // ->add('commande')
         ;
     }
 
