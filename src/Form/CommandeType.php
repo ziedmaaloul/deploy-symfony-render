@@ -9,6 +9,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use App\Repository\FournisseurRepository;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use App\Entity\Fournisseur;
+
 
 class CommandeType extends AbstractType
 {
@@ -33,12 +35,12 @@ class CommandeType extends AbstractType
     {
 
         $builder
-            ->add('datecomm')
             ->add('fournisseur', ChoiceType::class, [
                 'label' => 'Fournissuer',
-                'choices' => $this->fournisseurData,
+                'class' => Fournisseur::class, // Le nom de l'entité Fournisseur
+                'choice_label' => 'nom', // La propriété de l'entité à afficher dans le champ
                 'attr' => ['class' => 'form-select'],
-                'choice_value' => 'id'
+                'choice_value' => 'id', // La propriété de l'entité à utiliser comme valeur du choix
             ])
             ->add('commandeLignes', CollectionType::class, [
                 'entry_type' => CommandeLigneType::class,

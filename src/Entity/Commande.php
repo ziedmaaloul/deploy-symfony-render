@@ -19,9 +19,6 @@ class Commande
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $datecomm = null;
-
     #[ORM\ManyToOne(inversedBy: 'commandes')]
     private ?Fournisseur $fournisseur = null;
 
@@ -45,18 +42,6 @@ class Commande
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getDatecomm(): ?\DateTimeInterface
-    {
-        return $this->datecomm;
-    }
-
-    public function setDatecomm(?\DateTimeInterface $datecomm): static
-    {
-        $this->datecomm = $datecomm;
-
-        return $this;
     }
 
     public function getFournisseur(): ?Fournisseur
