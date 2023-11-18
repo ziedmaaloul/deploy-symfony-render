@@ -1,31 +1,30 @@
 <?php
 
-// src/EventListener/NotFoundListener.php
-
 namespace App\EventListener;
 
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\Routing\RouterInterface;
+use Symfony\Component\HttpKernel\KernelEvents;
 
-class NotFoundListener
+class ErroNotFoundListenerrListener implements EventSubscriberInterface
 {
-    private RouterInterface $router;
-
-    public function __construct(RouterInterface $router)
-    {
-        $this->router = $router;
-    }
-
-    public function onKernelException(ExceptionEvent $event)
+    public function onKernelException(ExceptionEvent $event): void
     {
         $exception = $event->getThrowable();
 
-        if ($exception instanceof NotFoundHttpException) {
-            $url = $this->router->generate('error_404');
-            $response = new RedirectResponse($url);
+        if ($exception instanceof \Symfony\Component\HttpKernel\Exception\NotFoundHttpException) {
+            $response = new RedirectResponse('/404');
             $event->setResponse($response);
         }
     }
+
+    public static function getSubscribedEvents(): array
+    {
+        return [
+            KernelEvents::EXCEPTION => 'onKernelException',
+        ];
+    }
 }
+
