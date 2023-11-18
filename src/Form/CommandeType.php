@@ -40,7 +40,7 @@ class CommandeType extends AbstractType
                 'attr' => ['class' => 'form-select'],
             ])
             ->add('commandLines', CollectionType::class, [
-                'entry_type' => CommandLineType::class,
+                'entry_type' => CommandeLineType::class,
                 'allow_add' => true,
                 'allow_delete' => true,
                 'by_reference' => false,
