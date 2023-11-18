@@ -22,7 +22,8 @@
 					</td>
 					<td>{{ commande.datecomm ? commande.datecomm|date('Y-m-d') : '' }}</td>
 					<td>
-						<a href="{{ path('app_commande_edit', {'id': commande.id}) }}">edit</a>
+                    <a href="{{ path('app_commande_edit', {'id': commande.id}) }}" class="btn btn-success"><i class="bi bi-pencil"></i></a>
+                    {{ include('commande/_delete_form.html.twig') }}
 					</td>
 				</tr>
 			{% else %}

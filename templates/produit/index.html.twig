@@ -29,7 +29,8 @@
 					<td>{{ produit.quantity }}</td>
 					<td>{{ produit.price }}</td>
 					<td>
-						<a href="{{ path('app_produit_edit', {'id': produit.id}) }}">edit</a>
+                    <a href="{{ path('app_produit_edit', {'id': produit.id}) }}" class="btn btn-success"><i class="bi bi-pencil"></i></a>
+                    {{ include('produit/_delete_form.html.twig') }}
 					</td>
 				</tr>
 			{% else %}
