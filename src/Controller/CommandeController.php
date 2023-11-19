@@ -14,14 +14,6 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/commande')]
 class CommandeController extends AbstractController
 {
-
-    private $commandeRepository = null;
-    
-    function __construct(CommandeRepository $commandeRepository) {
-        $this->commandeRepository = $commandeRepository;
-    }
-
-
     #[Route('/', name: 'app_commande_index', methods: ['GET'])]
     public function index(CommandeRepository $commandeRepository): Response
     {
@@ -31,7 +23,7 @@ class CommandeController extends AbstractController
     }
 
     #[Route('/new', name: 'app_commande_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager , CommandeRepository $commandeRepository): Response
     {
 
         // if ($request->isMethod('POST')) {
@@ -52,7 +44,7 @@ class CommandeController extends AbstractController
             
             if ($form->isSubmitted() && $form->isValid()) {
 
-                $this->commandeRepository->save($commande, true);
+                $commandeRepository->save($commande, true);
                 dd($commande);
                 $entityManager->persist($commande);
                 $entityManager->flush(); 
