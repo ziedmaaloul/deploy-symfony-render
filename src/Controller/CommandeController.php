@@ -58,12 +58,12 @@ class CommandeController extends AbstractController
             $newCommande = new Commande();
             $newCommande->setFournisseur($commande->getFournisseur());
 
-            $entityManager->persist($commande);
+            $entityManager->persist($newCommande);
             $entityManager->flush();
 
             if($commandesLines){
                 foreach($commandesLines as $commandeLigne){
-                    
+
                 }
             }
 
