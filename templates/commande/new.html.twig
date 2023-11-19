@@ -1,33 +1,31 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}Create a new Commande
+{% endblock %}
 {% block body %}
-    <h1>Create a new Commande</h1>
+	{{ form_start(form) }}
+	{{ form_row(form.fournisseur) }}
 
-    {{ form_start(form) }}
-    {{ form_row(form.datecomm) }}
-    {{ form_row(form.fournisseur) }}
+	<h2>Command Lines</h2>
+	<ul class="command-lines" data-prototype="{{ form_row(form.commandeLignes.vars.prototype)|e }}">
+		{{ form_errors(form.commandeLignes) }}
+		{{ form_widget(form.commandeLignes) | raw }}
+	</ul>
 
-    <h2>Command Lines</h2>
-    <ul class="command-lines" data-prototype="{{ form_row(form.commandeLignes.vars.prototype)|e }}">
-        {{ form_errors(form.commandeLignes) }}
-        {{ form_widget(form.commandeLignes) | raw }}
-    </ul>
+	<button type="button" class="add-item">Add Command Line</button>
+	<button type="submit">Save</button>
+	{{ form_end(form) }}
 
-    <button type="button" class="add-item">Add Command Line</button>
-    <button type="submit">Save</button>
-    {{ form_end(form) }}
+	<script>
+		document.addEventListener('DOMContentLoaded', function () {
+var addButton = document.querySelector('.add-item');
+var collectionHolder = document.querySelector('.command-lines');
+var prototype = collectionHolder.getAttribute('data-prototype');
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var addButton = document.querySelector('.add-item');
-            var collectionHolder = document.querySelector('.command-lines');
-            var prototype = collectionHolder.getAttribute('data-prototype');
-            
-            addButton.addEventListener('click', function () {
-                var newItem = document.createElement('li');
-                newItem.innerHTML = prototype.replace(/__name__/g, collectionHolder.children.length);
-                collectionHolder.appendChild(newItem);
-            });
-        });
-    </script>
+addButton.addEventListener('click', function () {
+var newItem = document.createElement('li');
+newItem.innerHTML = prototype.replace(/__name__/g, collectionHolder.children.length);
+collectionHolder.appendChild(newItem);
+});
+});
+	</script>
 {% endblock %}
