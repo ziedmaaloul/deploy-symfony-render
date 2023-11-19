@@ -18,6 +18,8 @@
 		</thead>
 		<tbody>
 			{% for commande in commandes %}
+
+            {{dump(commande)}}
 				<tr>
 					<td>
 						<a href="{{ path('app_commande_show', {'id': commande.id}) }}">{{ commande.id }}</a>
@@ -33,7 +35,7 @@
 							{{ include('commande/_delete_form.html.twig') }}
 						</div>
 					</td>
-					<td>Fournissuer</td>
+					<td>{{commande.fournisseur.nom}}</td>
 					<td>Prix Totale</td>
 				</tr>
 			{% else %}
