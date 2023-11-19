@@ -27,7 +27,7 @@ class CommandeController extends AbstractController
     }
 
 
-    function setCommandeLigne(CommandeLignne $commandeLigneRepo, Commande $commande) : void {
+    function setCommandeLigne(CommandeLigne $commandeLigneRepo, Commande $commande) : void {
     
         $commandeLigne = new CommandeLigne();
         $commandeLigne->setQuantity($commandeLigneRepo->getQuantity());
