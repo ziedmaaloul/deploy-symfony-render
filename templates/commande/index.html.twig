@@ -17,9 +17,9 @@
 			</tr>
 		</thead>
 		<tbody>
+            {{dump(commandes)}}
 			{% for commande in commandes %}
 
-            {{dump(commande)}}
 				<tr>
 					<td>
 						<a href="{{ path('app_commande_show', {'id': commande.id}) }}">{{ commande.id }}</a>
