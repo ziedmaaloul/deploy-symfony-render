@@ -41,7 +41,9 @@ class CommandeController extends AbstractController
             $form = $this->createForm(CommandeType::class, $commande);
             $form->handleRequest($request);
 
+            
             if ($form->isSubmitted() && $form->isValid()) {
+                dd($commande);
                 $entityManager->persist($commande);
                 $entityManager->flush(); 
             }
