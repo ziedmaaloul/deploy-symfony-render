@@ -58,6 +58,14 @@ class CommandeController extends AbstractController
             $newCommande = new Commande();
             $newCommande->setFournisseur($commande->getFournisseur());
 
+            $entityManager->persist($commande);
+            $entityManager->flush();
+
+            if($commandesLines){
+                foreach($commandesLines as $commandeLigne){
+                    
+                }
+            }
 
             
             dd([
@@ -66,7 +74,7 @@ class CommandeController extends AbstractController
                 "newCommande" => $newCommande
             ]);
 
-            
+
             $entityManager->persist($commande);
             $entityManager->flush(); 
         }        
