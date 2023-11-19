@@ -27,7 +27,7 @@ class CommandeController extends AbstractController
     }
 
 
-    function setCommandeLigne(CommandeLigne $commandeLigneRepo, Commande $commande) : void {
+    function setCommandeLigne(CommandeLigne $commandeLigneRepo, Commande $commande) : CommandeLigne {
     
         $commandeLigne = new CommandeLigne();
         $commandeLigne->setQuantity($commandeLigneRepo->getQuantity());
@@ -36,13 +36,14 @@ class CommandeController extends AbstractController
 
         $this->entityManager->persist($commandeLigne);
         $this->entityManager->flush();
+
+        return $commandeLigne;
     }
 
 
     #[Route('/new', name: 'app_commande_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager , CommandeRepository $commandeRepository): Response
     {
-        dd($commandeRepository->findAll());
         $this->entityManager = $entityManager;
 
 
