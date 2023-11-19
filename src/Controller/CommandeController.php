@@ -42,6 +42,7 @@ class CommandeController extends AbstractController
     #[Route('/new', name: 'app_commande_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager , CommandeRepository $commandeRepository): Response
     {
+        dd($commandeRepository->find());
         $this->entityManager = $entityManager;
 
 
@@ -65,18 +66,6 @@ class CommandeController extends AbstractController
                    $this->setCommandeLigne($commandeLigne , $newCommande);
                 }
             }
-
-            
-            dd([
-                "finalCommande" => $commandeRepository->find($newCommande->getId()),
-                "commandeLines" => $commandesLines,
-                "oldCommande" => $commande, 
-                "newCommande" => $newCommande
-            ]);
-
-
-            // $entityManager->persist($commande);
-            // $entityManager->flush(); 
         }        
 
         return $this->render('commande/new.html.twig', [
