@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Commande;
+use App\Entity\CommandeLigne;
 use App\Form\CommandeType;
 use App\Repository\CommandeRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -14,6 +15,9 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/commande')]
 class CommandeController extends AbstractController
 {
+
+    private $entityManager = null;
+
     #[Route('/', name: 'app_commande_index', methods: ['GET'])]
     public function index(CommandeRepository $commandeRepository): Response
     {
@@ -22,35 +26,50 @@ class CommandeController extends AbstractController
         ]);
     }
 
+
+    function setCommandeLigne(CommandeLignne $commandeLigneRepo) : CommandeLigne {
+    
+        $commandeLigne = new CommandeLigne();
+        $commandeLigne->setQuantity($commandeLigneRepo->getQuantity());
+        $commandeLigne->setProduit($commandeLigneRepo->getProduit());
+
+        $this->entityManager->persist($commandeLigne);
+        $this->entityManager->flush();
+
+        return $commandeLigne;
+    }
+
+
     #[Route('/new', name: 'app_commande_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager , CommandeRepository $commandeRepository): Response
     {
+        $this->entityManager = $entityManager;
 
-        // if ($request->isMethod('POST')) {
-        //     $commandeRequest = $request->getParameters()["commande"];
 
-        //     if($commandeRequest){
-        //         $commande = new Commande();
-        //         $commande->set
-        //     }
-        //     dd($commande);
-        //     return $this->redirectToRoute('app_commande_index', [], Response::HTTP_SEE_OTHER);
-        // }else{
+        $commande = new Commande();
+        $form = $this->createForm(CommandeType::class, $commande);
+        $form->handleRequest($request);
 
-            $commande = new Commande();
-            $form = $this->createForm(CommandeType::class, $commande);
-            $form->handleRequest($request);
+        
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $commandesLines = $commande->getCommandeLignes();
+
+            $newCommande = new Commande();
+            $newCommande->setFournisseur($commande->getFournisseur());
+
 
             
-            if ($form->isSubmitted() && $form->isValid()) {
+            dd([
+                "commandeLines" => $commandesLines,
+                "oldCommande" => $commande, 
+                "newCommande" => $newCommande
+            ]);
 
-                $commandesLines = $commande->getCommandeLines();
-                dd($commandesLines);
-                $entityManager->persist($commande);
-                $entityManager->flush(); 
-            }
-        // }
-        
+            
+            $entityManager->persist($commande);
+            $entityManager->flush(); 
+        }        
 
         return $this->render('commande/new.html.twig', [
             'commande' => $commande,
