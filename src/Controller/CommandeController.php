@@ -27,16 +27,15 @@ class CommandeController extends AbstractController
     }
 
 
-    function setCommandeLigne(CommandeLignne $commandeLigneRepo) : CommandeLigne {
+    function setCommandeLigne(CommandeLignne $commandeLigneRepo, Commande $commande) : void {
     
         $commandeLigne = new CommandeLigne();
         $commandeLigne->setQuantity($commandeLigneRepo->getQuantity());
         $commandeLigne->setProduit($commandeLigneRepo->getProduit());
+        $commandeLigne->setCommande($commande);
 
         $this->entityManager->persist($commandeLigne);
         $this->entityManager->flush();
-
-        return $commandeLigne;
     }
 
 
@@ -63,20 +62,21 @@ class CommandeController extends AbstractController
 
             if($commandesLines){
                 foreach($commandesLines as $commandeLigne){
-
+                   $this->setCommandeLigne($commandeLigne , $newCommande);
                 }
             }
 
             
             dd([
+                "finalCommande" => $commandeRepository->find($newCommande->getId()),
                 "commandeLines" => $commandesLines,
                 "oldCommande" => $commande, 
                 "newCommande" => $newCommande
             ]);
 
 
-            $entityManager->persist($commande);
-            $entityManager->flush(); 
+            // $entityManager->persist($commande);
+            // $entityManager->flush(); 
         }        
 
         return $this->render('commande/new.html.twig', [
