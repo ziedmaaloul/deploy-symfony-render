@@ -44,8 +44,8 @@ class CommandeController extends AbstractController
             
             if ($form->isSubmitted() && $form->isValid()) {
 
-                $commandeRepository->save($commande, true);
-                dd($commande);
+                $commandesLines = $commande->getCommandeLines();
+                dd($commandesLines);
                 $entityManager->persist($commande);
                 $entityManager->flush(); 
             }
