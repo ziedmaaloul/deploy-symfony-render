@@ -34,10 +34,10 @@ class Commande
     private ?\DateTimeImmutable $updated_at = null;
 
 
-    public function __construct()
-    {
-        $this->commandeLignes = new ArrayCollection();
-    }
+    // public function __construct()
+    // {
+    //     $this->commandeLignes = new ArrayCollection();
+    // }
 
     public function getId(): ?int
     {
