@@ -21,10 +21,27 @@ class CommandeController extends AbstractController
     private $commandeRepository = null;
     private $commandeLigneRepository= null;
 
-    function __construct(CommandeRepository $commandeRepository , CommandeLigneRepository $commandeLigneRepository) {
+    public function __construct(CommandeRepository $commandeRepository , 
+                        CommandeLigneRepository $commandeLigneRepository
+                        ) {
         $this->commandeRepository = $commandeRepository;
         $this->commandeLigneRepository = $commandeLigneRepository;
     }
+
+    private function calculateTotal(Commande $commande) : float {
+        $total = 0;
+        $commandesLignes = $commande->getCommandeLigne();
+        if(!$commandesLignes){
+            return 0;
+        }
+
+        foreach ($commandesLignes as $commandesLigne){
+            $total += $commandesLigne->getQuantity() * $commandesLigne->getPrice();
+        }
+
+        return $total;
+    }
+
 
     #[Route('/', name: 'app_commande_index', methods: ['GET'])]
     public function index(): Response
@@ -41,16 +58,17 @@ class CommandeController extends AbstractController
                 }
             }
 
-            $commands[] = $commande;
+            $commands[] = [
+                "id" => $commande->getId(),
+                "object" => $commande,
+                "fournisseur" => $commande->getFournisseur()->getNom(),
+                'total' => $this->calculateTotal($commande)
+            ];
         }
 
 
-        dd([
-            "relatedCommands" => $commands,
-            "command" => $this->commandeRepository->findAll() , 
-            "lines" => $this->commandeLigneRepository->findAll() ]);
         return $this->render('commande/index.html.twig', [
-            'commandes' => $this->commandeRepository->findAll(),
+            'commandes' => $commands,
         ]);
 
     }
