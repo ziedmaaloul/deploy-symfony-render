@@ -30,7 +30,7 @@ class CommandeController extends AbstractController
 
     private function calculateTotal(Commande $commande) : float {
         $total = 0;
-        $commandesLignes = $commande->getCommandeLigne();
+        $commandesLignes = $commande->getCommandeLignes();
         if(!$commandesLignes){
             return 0;
         }
