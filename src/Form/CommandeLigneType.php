@@ -3,12 +3,15 @@
 namespace App\Form;
 
 use App\Entity\CommandeLigne;
+use App\Entity\Fournisseur;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use App\Repository\ProduitRepository;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+
 
 class CommandeLigneType extends AbstractType
 {
@@ -32,9 +35,10 @@ class CommandeLigneType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder->add('produit', ChoiceType::class, [
+        $builder->add('produit', EntityType::class, [
             'label' => 'Produit',
-            'choices' => $this->produitData,
+            'class' => Produit::class, // Le nom de l'entité Fournisseur
+            'choice_label' => 'libelle', // La propriété de l'entité à afficher dans le champ
             'attr' => ['class' => 'form-select'],
         ])
         ->add('quantity', NumberType::class, [

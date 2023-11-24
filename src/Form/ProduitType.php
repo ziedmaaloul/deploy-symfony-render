@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Produit;
+use App\Entity\Fournisseur;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -19,6 +20,8 @@ use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use App\Repository\FournisseurRepository;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+
 
 class ProduitType extends AbstractType
 {
@@ -58,9 +61,10 @@ class ProduitType extends AbstractType
             'label' => 'Prix',
             'attr' => ['class' => 'form-control'],
         ])
-        ->add('fournisseur', ChoiceType::class, [
+        ->add('fournisseur', EntityType::class, [
             'label' => 'Fournissuer',
-            'choices' => $this->fournisseurData,
+            'class' => Fournisseur::class, // Le nom de l'entité Fournisseur
+            'choice_label' => 'nom', // La propriété de l'entité à afficher dans le champ
             'attr' => ['class' => 'form-select'],
         ]);
     }
