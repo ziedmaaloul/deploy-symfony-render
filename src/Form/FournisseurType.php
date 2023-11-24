@@ -17,7 +17,7 @@ class FournisseurType extends AbstractType
             'attr' => ['class' => 'form-control'],
         ])
         ->add('adresse', TextType::class, [
-            'label' => 'Raison Sociale',
+            'label' => 'Adresse',
             'attr' => ['class' => 'form-control'],
         ])
         ->add('telephone', TextType::class, [

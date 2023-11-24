@@ -28,13 +28,7 @@
 					<td>{{ fournisseur.telephone }}</td>
 					<td>{{ fournisseur.fax }}</td>
 					<td>
-						<div class="display-flex">
-							<a href="{{ path('app_fournisseur_edit', {'id': fournisseur.id}) }}" class="btn btn-success">
-								<i class="bi bi-pencil"></i>
-							</a>
-
-							{{ include('fournisseur/_delete_form.html.twig') }}
-						</div>
+						{{ include('fournisseur/_actions.html.twig') }}
 					</td>
 				</tr>
 			{% else %}

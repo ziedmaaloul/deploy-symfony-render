@@ -1,0 +1,6 @@
+<div class="display-flex">
+	<a href="{{ path('app_produit_edit', {'id': produit.id}) }}" class="btn btn-success">
+		<i class="bi bi-pencil"></i>
+	</a>
+	{{ include('produit/_delete_form.html.twig') }}
+</div>

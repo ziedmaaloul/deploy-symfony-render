@@ -1,28 +1,33 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Fournisseur: {{ fournisseur.id }} - {{ fournisseur.nom }}{% endblock %}
+{% block title %}Fournisseur:
+	{{ fournisseur.id }}
+	-
+	{{ fournisseur.nom }}
+{% endblock %}
 
 {% block body %}
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ fournisseur.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ fournisseur.nom }}</td>
-            </tr>
-            <tr>
-                <th>Adresse</th>
-                <td>{{ fournisseur.adresse }}</td>
-            </tr>
-            <tr>
-                <th>Telephone</th>
-                <td>{{ fournisseur.telephone }}</td>
-            </tr>
-        </tbody>
-    </table>
+	{{ include('fournisseur/_actions.html.twig') }}
 
-    <a class="btn btn-primary center" href="{{ path('app_fournisseur_edit', {'id': fournisseur.id}) }}">edit</a>
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Id</th>
+				<td>{{ fournisseur.id }}</td>
+			</tr>
+			<tr>
+				<th>Nom</th>
+				<td>{{ fournisseur.nom }}</td>
+			</tr>
+			<tr>
+				<th>Adresse</th>
+				<td>{{ fournisseur.adresse }}</td>
+			</tr>
+			<tr>
+				<th>Telephone</th>
+				<td>{{ fournisseur.telephone }}</td>
+			</tr>
+		</tbody>
+	</table>
+
 {% endblock %}
