@@ -1,12 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Produit:
+{% block title %}Produit :
 	{{ produit.id }}
 	-
 	{{ produit.libelle }}
 {% endblock %}
 
 {% block body %}
+
+	{{ include('produit/_actions.html.twig') }}
+
+	<br>
+
+	<img src="{{ produit.image }}" style="text-align: center;" width="200px"/>
 
 	<table class="table">
 		<tbody>
@@ -15,26 +21,19 @@
 				<td>{{ produit.id }}</td>
 			</tr>
 			<tr>
-				<th>Libelle</th>
+				<th>Libellé</th>
 				<td>{{ produit.libelle }}</td>
 			</tr>
 			<tr>
-				<th>Image</th>
-				<td>{{ produit.image }}</td>
-			</tr>
-			<tr>
-				<th>Quantity</th>
+				<th>Quantité</th>
 				<td>{{ produit.quantity }}</td>
 			</tr>
 			<tr>
-				<th>Price</th>
-				<td>{{ produit.price }}</td>
+				<th>Prix</th>
+				<td>{{ produit.price }}
+					TND</td>
 			</tr>
 		</tbody>
 	</table>
-
-
-	<a href="{{ path('app_produit_edit', {'id': produit.id}) }}">edit</a>
-
 
 {% endblock %}
