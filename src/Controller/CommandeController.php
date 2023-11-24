@@ -6,6 +6,7 @@ use App\Entity\Commande;
 use App\Entity\CommandeLigne;
 use App\Form\CommandeType;
 use App\Repository\CommandeRepository;
+use App\Repository\CommandeLigneRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,14 +18,24 @@ class CommandeController extends AbstractController
 {
 
     private $entityManager = null;
+    private $commandeRepository = null;
+    private $commandeLigneRepository= null;
+
+    function __construct(CommandeRepository $commandeRepository , CommandeLigneRepository $commandeLigneRepository) {
+        $this->commandeRepository = $commandeRepository;
+        $this->commandeLigneRepository = $commandeLigneRepository;
+    }
 
     #[Route('/', name: 'app_commande_index', methods: ['GET'])]
-    public function index(CommandeRepository $commandeRepository): Response
+    public function index(): Response
     {
-        dd($commandeRepository->findAll());
+        dd([
+            "command" => $this->commandeRepository->findAll() , 
+            "lines" => $this->commandeLigneRepository->findAll() ]);
         return $this->render('commande/index.html.twig', [
-            'commandes' => $commandeRepository->findAll(),
+            'commandes' => $this->commandeRepository->findAll(),
         ]);
+
     }
 
 

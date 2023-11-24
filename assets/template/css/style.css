@@ -1241,3 +1241,9 @@ h6 {
   font-size: 13px;
   color: #012970;
 }
+
+.btn-top-center {
+  text-align: center;
+  display: block;
+  margin: 10px auto;
+}
