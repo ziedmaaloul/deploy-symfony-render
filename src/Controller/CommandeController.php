@@ -35,7 +35,7 @@ class CommandeController extends AbstractController
         $commandeLigne->setProduit($commandeLigneRepo->getProduit());
         $commandeLigne->setCommande($commande);
 
-        $this->entityManager->persist($commandeLigneRepo);
+        $this->entityManager->persist($commandeLigne);
         $this->entityManager->flush();
 
         return $commandeLigne;
