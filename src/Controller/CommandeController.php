@@ -29,7 +29,24 @@ class CommandeController extends AbstractController
     #[Route('/', name: 'app_commande_index', methods: ['GET'])]
     public function index(): Response
     {
+        $commands = null;
+        $commandList = $this->commandeRepository->findAll();
+
+        foreach($commandList as $commande){
+            $commandLignes =  $this->commandeLigneRepository->findBy(["commande_id" => $commande->getId()]);
+
+            if($commandeLignes){
+                foreach($commandeLignes as $commandeLigne){
+                    $commande->addCommandeLigne($commandeLigne);
+                }
+            }
+
+            $commands[] = $commande;
+        }
+
+
         dd([
+            "relatedCommands" => $commands,
             "command" => $this->commandeRepository->findAll() , 
             "lines" => $this->commandeLigneRepository->findAll() ]);
         return $this->render('commande/index.html.twig', [
