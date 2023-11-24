@@ -24,7 +24,7 @@ class CommandeLigneType extends AbstractType
 
         if($produits){
             foreach($produits as $produit){
-                $this->produitData[$produit->getLibelle()] = $fournisseur->getId();
+                $this->produitData[$produit->getLibelle()] = $produit->getId();
             }
         }
     }
