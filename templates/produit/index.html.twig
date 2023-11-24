@@ -1,22 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Tous les Produits
-{% endblock %}
+{% block title %}Tous les Produits{% endblock %}
 
 {% block body %}
 
-	<a href="{{ path('app_produit_new') }}" class="btn btn-primary">Create new</a>
-
+	<a href="{{ path('app_produit_new') }}" class="btn btn-primary">Créer un nouveau</a>
 
 	<table class="table datatable">
 		<thead>
 			<tr>
 				<th>#</th>
-				<th>Libelle</th>
-				<th>Image</th>
-				<th>Quantity</th>
-				<th>Price</th>
-				<th>actions</th>
+				<th></th>
+				<th>Libellé</th>
+				<th>Quantité</th>
+				<th>Prix</th>
+				<th>Actions</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -25,8 +23,8 @@
 					<td>
 						<a href="{{ path('app_produit_show', {'id': produit.id}) }}">{{ produit.id }}</a>
 					</td>
+					<td><img src="{{ produit.image }}"/></td>
 					<td>{{ produit.libelle }}</td>
-					<td>{{ produit.image }}</td>
 					<td>{{ produit.quantity }}</td>
 					<td>{{ produit.price }}</td>
 					<td>
@@ -36,13 +34,12 @@
 								<i class="bi bi-pencil"></i>
 							</a>
 							{{ include('produit/_delete_form.html.twig') }}
-
 						</div>
 					</td>
 				</tr>
 			{% else %}
 				<tr>
-					<td colspan="6">no records found</td>
+					<td colspan="6">Aucun enregistrement trouvé</td>
 				</tr>
 			{% endfor %}
 		</tbody>
