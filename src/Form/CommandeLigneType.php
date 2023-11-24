@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\CommandeLigne;
 use App\Entity\Fournisseur;
+use App\Entity\Produit;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
