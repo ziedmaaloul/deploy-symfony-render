@@ -60,7 +60,7 @@ class CommandeController extends AbstractController
 
             $commands[] = [
                 "id" => $commande->getId(),
-                "object" => $commande,
+                "created_at" => $commande->getCreatedAt(),
                 "fournisseur" => $commande->getFournisseur()->getNom(),
                 'total' => $this->calculateTotal($commande)
             ];
