@@ -30,13 +30,13 @@ class CommandeController extends AbstractController
 
     function setCommandeLigne(CommandeLigne $commandeLigneRepo, Commande $commande) : CommandeLigne {
     
-        dd($commandeLigneRepo);
+        // dd($commandeLigneRepo);
         $commandeLigne = new CommandeLigne();
         $commandeLigne->setQuantity($commandeLigneRepo->getQuantity());
         $commandeLigne->setProduit($commandeLigneRepo->getProduit());
         $commandeLigne->setCommande($commande);
 
-        $this->entityManager->persist($commandeLigne);
+        $this->entityManager->persist($commandeLigneRepo);
         $this->entityManager->flush();
 
         return $commandeLigne;
