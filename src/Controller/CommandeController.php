@@ -33,7 +33,7 @@ class CommandeController extends AbstractController
         $commandList = $this->commandeRepository->findAll();
 
         foreach($commandList as $commande){
-            $commandLignes =  $this->commandeLigneRepository->findBy(["commande_id" => $commande->getId()]);
+            $commandLignes =  $this->commandeLigneRepository->findBy(["commande" => $commande->getId()]);
 
             if($commandeLignes){
                 foreach($commandeLignes as $commandeLigne){
