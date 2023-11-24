@@ -30,7 +30,6 @@ class CommandeController extends AbstractController
 
     function setCommandeLigne(CommandeLigne $commandeLigneRepo, Commande $commande) : CommandeLigne {
     
-        // dd($commandeLigneRepo);
         $commandeLigne = new CommandeLigne();
         $commandeLigne->setQuantity($commandeLigneRepo->getQuantity());
         $commandeLigne->setProduit($commandeLigneRepo->getProduit());
