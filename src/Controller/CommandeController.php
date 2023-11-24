@@ -36,7 +36,7 @@ class CommandeController extends AbstractController
         }
 
         foreach ($commandesLignes as $commandesLigne){
-            $total += $commandesLigne->getQuantity() * $commandesLigne->getPrice();
+            $total += $commandesLigne->getQuantity() * $commandesLigne->getProduit()->getPrice();
         }
 
         return $total;
