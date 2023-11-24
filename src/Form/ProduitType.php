@@ -46,7 +46,7 @@ class ProduitType extends AbstractType
             'label' => 'Nom de produit',
             'attr' => ['class' => 'form-control'],
         ])
-        ->add('image', FileType::class, [
+        ->add('image', TextType::class, [
             'label' => 'Image',
             'attr' => ['class' => 'form-control'],
         ])
