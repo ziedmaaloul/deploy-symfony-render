@@ -85,13 +85,13 @@
 			</thead>
 			<tbody>
 				{# {% for ligne in commande.getCommandeLignes() %}
-														                <tr>
-														                    <td>{{ ligne.getProduit().getLibelle() }}</td>
-														                    <td>{{ ligne.getQuantity() }}</td>
-														                    <td>{{ ligne.getProduit().getPrice() }}</td>
-														                    <td>{{ ligne.getQuantity() * ligne.getProduit().getPrice() }}</td>
-														                </tr>
-														            {% endfor %} #}
+																						                <tr>
+																						                    <td>{{ ligne.getProduit().getLibelle() }}</td>
+																						                    <td>{{ ligne.getQuantity() }}</td>
+																						                    <td>{{ ligne.getProduit().getPrice() }}</td>
+																						                    <td>{{ ligne.getQuantity() * ligne.getProduit().getPrice() }}</td>
+																						                </tr>
+																						            {% endfor %} #}
 
 
 				<tr>
@@ -110,14 +110,22 @@
 			{# <p class="total">Total: {{ total }}</p> #}
 		</div>
 	</div>
-	<div
-		id="print-modal" class="print-modal">
-		<!-- Contenu à imprimer -->
-		<div id="invoice-content-print"></div>
-	</div>
 
-	<script>
-		function printInvoice() { // Copiez le contenu à imprimer dans la fenêtre modale
+	<div class="print-button">
+		<button class="btn btn-primary" onclick="printInvoice()">
+			<i class="bi bi-printer-fill">
+				<span style="margin-left: 5px;">Imprimer</span>
+			</button>
+		</div>
+
+		<div
+			id="print-modal" class="print-modal">
+			<!-- Contenu à imprimer -->
+			<div id="invoice-content-print"></div>
+		</div>
+
+		<script>
+			function printInvoice() { // Copiez le contenu à imprimer dans la fenêtre modale
 var invoiceContent = document.getElementById('invoice-content').innerHTML;
 document.getElementById('invoice-content-print').innerHTML = invoiceContent;
 
@@ -130,6 +138,6 @@ window.print();
 // Cachez la fenêtre modale après impression
 document.getElementById('print-modal').style.display = 'none';
 }
-	</script>
+		</script>
 
-{% endblock %}
+	{% endblock %}
