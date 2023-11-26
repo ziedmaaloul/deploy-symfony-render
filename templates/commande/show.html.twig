@@ -79,8 +79,8 @@
 			<th>Designation</th>
 			<th>Image</th>
 			<th>Quantité</th>
-			<th>Prix unitaire</th>
-			<th>Total</th>
+			<th>Prix unitaire (TND)</th>
+			<th>Total (TND)</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -99,8 +99,9 @@
 </table>
 
 <div class="invoice-footer">
-	<p class="total">Total:
+<p class="total"><b>Total :</b> 
 		{{commande.total}}
+		TND
 	</p>
 </div></div><div class="print-button">
 <button class="btn btn-primary" onclick="printInvoice()">

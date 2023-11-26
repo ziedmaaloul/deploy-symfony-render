@@ -138,9 +138,10 @@ class CommandeController extends AbstractController
     #[Route('/{id}', name: 'app_commande_show', methods: ['GET'])]
     public function show(Commande $commande): Response
     {
-        
+        $commande = $this->getCommandDetails($commande);
+        dd($commande);
         return $this->render('commande/show.html.twig', [
-            'commande' => $this->getCommandDetails($commande),
+            'commande' => $commande,
         ]);
     }
 
