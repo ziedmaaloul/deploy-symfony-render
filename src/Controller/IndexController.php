@@ -46,14 +46,7 @@ class IndexController extends AbstractController
         $todayCommands =  $this->commandeRepository->findAllToday();
         $monthCommands = $this->commandeLigneRepository->findAllThisMonth();
         $yearCommands = $this->commandeLigneRepository->findAllThisYear();
-        $products = $this->commandeLigneRepository->findBestSellingProductsThisMonth();
-        // dd([
-        //     "today" => $todayCommands,
-        //     "month" => $monthCommands,
-        //     "year" => $yearCommands,
-        //     "products" => $products
-        // ]);
-        // dd($todayCommands);
+     
         return $this->render('index/index.html.twig', [
             'todayCommands' => count($todayCommands),
             'thisMonthRevenue' => $this->calculateFromArray($monthCommands),
