@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Utility\Utility;
 use App\Entity\Commande;
 use App\Entity\CommandeLigne;
 use App\Form\CommandeType;
@@ -28,39 +29,6 @@ class CommandeController extends AbstractController
         $this->commandeLigneRepository = $commandeLigneRepository;
     }
 
-    private function calculateTotal(Commande $commande) : float {
-        $total = 0;
-        $commandesLignes = $commande->getCommandeLignes();
-        if(!$commandesLignes){
-            return 0;
-        }
-
-        foreach ($commandesLignes as $commandesLigne){
-            $total += $commandesLigne->getQuantity() * $commandesLigne->getProduit()->getPrice();
-        }
-
-        return $total;
-    }
-
-    protected function getCommandDetails(Commande $commande) : array {
-        
-        $commandLignes =  $this->commandeLigneRepository->findBy(["commande" => $commande->getId()]);
-
-        if($commandLignes){
-            foreach($commandLignes as $commandeLigne){
-                $commande->addCommandeLigne($commandeLigne);
-            }
-        }
-
-        return [
-            "id" => $commande->getId(),
-            "object" => $commande,
-            "created_at" => $commande->getCreatedAt(),
-            "fournisseur" => $commande->getFournisseur()->getNom(),
-            'total' => $this->calculateTotal($commande)
-        ];
-    }
-
     #[Route('/', name: 'app_commande_index', methods: ['GET'])]
     public function index(): Response
     {
@@ -76,7 +44,7 @@ class CommandeController extends AbstractController
                 }
             }
 
-            $commands[] = $this->getCommandDetails($commande);
+            $commands[] = Utility::getCommandDetails($commande , $this->commandeLigneRepository);
         }
 
 
@@ -138,7 +106,7 @@ class CommandeController extends AbstractController
     #[Route('/{id}', name: 'app_commande_show', methods: ['GET'])]
     public function show(Commande $commande): Response
     {
-        $commande = $this->getCommandDetails($commande);
+        $commande = Utility::getCommandDetails($commande);
         //dd($commande);
         return $this->render('commande/show.html.twig', [
             'commande' => $commande,
