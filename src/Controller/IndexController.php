@@ -34,7 +34,7 @@ class IndexController extends AbstractController
         }
 
         foreach ($commandLines as $commandLine){
-            $sum += $commandLine->getProduit->getPrice() * $commandLine->getQuantity();
+            $sum += $commandLine->getProduit()->getPrice() * $commandLine->getQuantity();
         }
 
         return $sum;
