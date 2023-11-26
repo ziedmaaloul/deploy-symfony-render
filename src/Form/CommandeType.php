@@ -26,12 +26,6 @@ class CommandeType extends AbstractType
         $this->fournisseurRepository = $fournisseurRepository;
 
         $this->fournisseurData = $this->fournisseurRepository->findAll();
-
-        // if($fournisseurs){
-        //     foreach($fournisseurs as $fournisseur){
-        //         $this->fournisseurData[$fournisseur] = $fournisseur->getId();
-        //     }
-        // }
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void

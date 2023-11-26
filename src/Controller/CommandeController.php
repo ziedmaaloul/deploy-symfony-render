@@ -139,7 +139,7 @@ class CommandeController extends AbstractController
     public function show(Commande $commande): Response
     {
         $commande = $this->getCommandDetails($commande);
-        dd($commande);
+        //dd($commande);
         return $this->render('commande/show.html.twig', [
             'commande' => $commande,
         ]);
