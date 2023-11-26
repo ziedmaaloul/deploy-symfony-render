@@ -34,7 +34,6 @@ class CommandeRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
-    
 
 //    /**
 //     * @return Commande[] Returns an array of Commande objects

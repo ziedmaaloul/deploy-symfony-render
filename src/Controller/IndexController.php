@@ -31,6 +31,14 @@ class IndexController extends AbstractController
     public function index(): Response
     {
         $todayCommands =  $this->commandeRepository->findAllToday();
+        $monthCommands = $this->commandeLigneRepository->findAllThisMonth();
+        $yearCommands = $this->commandeLigneRepository->findAllThisYear();
+
+        dd([
+            "today" => $todayCommands,
+            "month" => $monthCommands,
+            "year" => $yearCommands
+        ]);
         dd($todayCommands);
         return $this->render('index/index.html.twig', [
             'controller_name' => 'IndexController',

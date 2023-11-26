@@ -21,6 +21,34 @@ class CommandeLigneRepository extends ServiceEntityRepository
         parent::__construct($registry, CommandeLigne::class);
     }
 
+    public function findAllThisMonth(): array
+    {
+        $now = new \DateTime('first day of this month');
+        $endOfMonth = new \DateTime('first day of next month');
+
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.created_at >= :startOfMonth')
+            ->andWhere('c.created_at < :endOfMonth')
+            ->setParameter('startOfMonth', $now)
+            ->setParameter('endOfMonth', $endOfMonth)
+            ->getQuery()
+            ->getResult();
+    }
+
+
+    public function findAllThisYear(): array
+    {
+        $now = new \DateTime('first day of January this year');
+        $endOfYear = new \DateTime('first day of January next year');
+
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.created_at >= :startOfYear')
+            ->andWhere('c.created_at < :endOfYear')
+            ->setParameter('startOfYear', $now)
+            ->setParameter('endOfYear', $endOfYear)
+            ->getQuery()
+            ->getResult();
+    }
 //    /**
 //     * @return CommandeLigne[] Returns an array of CommandeLigne objects
 //     */
