@@ -60,84 +60,67 @@
 
 	<div id="invoice-content">
 		<div class="invoice-header">
-			<h1>Commande #ID</h1>
+			<h1>Commande
+				{{commande.id}}</h1>
 		</div>
 
-		<div
-			class="invoice-details">
-			{# <p>Date: {{ commande.getCreatedAt()|date('Y-m-d H:i:s') }}</p> #}
+		<div class="invoice-details">
 			<p>Date:
-			</p>
-			{# <p>Fournisseur: {{ commande.getFournisseur().getNom() }}</p> #}
-			<p>Fournisseur:
-			</p>
-		</div>
+				{{ commande.created_at|date('Y-m-d H:i:s') }}</p>
+		</p>
+		<p>Fournisseur:
+			{{ commande.fournisseur }}</p>
+	</p>
+</div>
 
-		<table>
-			<thead>
-				<tr>
-					<th>Designation</th>
-					<th>Image</th>
-					<th>Quantité</th>
-					<th>Prix unitaire</th>
-					<th>Total</th>
-				</tr>
-			</thead>
-			<tbody>
-				{# {% for ligne in commande.getCommandeLignes() %}
-																														                <tr>
-																														                    <td>{{ ligne.getProduit().getLibelle() }}</td>
-																														                    <td>{{ ligne.getQuantity() }}</td>
-																														                    <td>{{ ligne.getProduit().getPrice() }}</td>
-																														                    <td>{{ ligne.getQuantity() * ligne.getProduit().getPrice() }}</td>
-																														                </tr>
-																														            {% endfor %} #}
+<table>
+	<thead>
+		<tr>
+			<th>Designation</th>
+			<th>Image</th>
+			<th>Quantité</th>
+			<th>Prix unitaire</th>
+			<th>Total</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for ligne in commande.object.commandeLignes %}
+			<tr>
+				<td>{{ ligne.produit.libelle }}</td>
+				<td>
+					<img src="{{ligne.produit.image}}"/></td>
+				<td>{{ligne.quantity}}</td>
+				<td>{{ligne.produit.price}}</td>
+				<td>{{ ligne.quantity * ligne.produit.price }}</td>
+			</tr>
+		{% endfor %}
 
+	</tbody>
+</table>
 
-				<tr>
-					<td>Nom</td>
-					<td>Image</td>
-					<td>QTE</td>
-					<td>Prox Unitaire</td>
-					<td>Prox Totam</td>
-				</tr>
-			</tbody>
-		</table>
+<div class="invoice-footer">
+	<p class="total">Total:
+		{{commande.total}}
+	</p>
+</div></div><div class="print-button">
+<button class="btn btn-primary" onclick="printInvoice()">
+	<i class="bi bi-printer-fill"></i>
+	<span style="margin-left: 5px;">Imprimer</span>
+</button></div><div
+id="print-modal" class="print-modal">
+<!-- Contenu à imprimer -->
+<div id="invoice-content-print"></div></div><script>
+function printInvoice() {
+// Copiez le contenu à imprimer dans la fenêtre modale
+// var invoiceContent = document.getElementById('invoice-content').innerHTML;
+// document.getElementById('invoice-content-print').innerHTML = invoiceContent;
 
-		<div class="invoice-footer">
-			<p class="total">Total:
-			</p>
-			{# <p class="total">Total: {{ total }}</p> #}
-		</div>
-	</div>
-
-	<div class="print-button">
-		<button class="btn btn-primary" onclick="printInvoice()">
-			<i class="bi bi-printer-fill"></i>
-			<span style="margin-left: 5px;">Imprimer</span>
-		</button>
-	</div>
-
-	<div
-		id="print-modal" class="print-modal">
-		<!-- Contenu à imprimer -->
-		<div id="invoice-content-print"></div>
-	</div>
-
-	<script>
-		function printInvoice() { // Copiez le contenu à imprimer dans la fenêtre modale
-var invoiceContent = document.getElementById('invoice-content').innerHTML;
-document.getElementById('invoice-content-print').innerHTML = invoiceContent;
-
-// Affichez la fenêtre modale
-document.getElementById('print-modal').style.display = 'block';
+// // Affichez la fenêtre modale
+// document.getElementById('print-modal').style.display = 'block';
 
 // Imprimez la fenêtre modale
 window.print();
 
 // Cachez la fenêtre modale après impression
-document.getElementById('print-modal').style.display = 'none';
-}
-	</script>
-
-{% endblock %}
+// document.getElementById('print-modal').style.display = 'none';
+}</script>{% endblock %}

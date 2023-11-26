@@ -42,6 +42,24 @@ class CommandeController extends AbstractController
         return $total;
     }
 
+    protected function getCommandDetails(Commande $commande) : array {
+        
+        $commandLignes =  $this->commandeLigneRepository->findBy(["commande" => $commande->getId()]);
+
+        if($commandLignes){
+            foreach($commandLignes as $commandeLigne){
+                $commande->addCommandeLigne($commandeLigne);
+            }
+        }
+
+        return [
+            "id" => $commande->getId(),
+            "object" => $commande,
+            "created_at" => $commande->getCreatedAt(),
+            "fournisseur" => $commande->getFournisseur()->getNom(),
+            'total' => $this->calculateTotal($commande)
+        ];
+    }
 
     #[Route('/', name: 'app_commande_index', methods: ['GET'])]
     public function index(): Response
@@ -58,12 +76,7 @@ class CommandeController extends AbstractController
                 }
             }
 
-            $commands[] = [
-                "id" => $commande->getId(),
-                "created_at" => $commande->getCreatedAt(),
-                "fournisseur" => $commande->getFournisseur()->getNom(),
-                'total' => $this->calculateTotal($commande)
-            ];
+            $commands[] = $this->getCommandDetails($commande);
         }
 
 
@@ -125,8 +138,9 @@ class CommandeController extends AbstractController
     #[Route('/{id}', name: 'app_commande_show', methods: ['GET'])]
     public function show(Commande $commande): Response
     {
+        
         return $this->render('commande/show.html.twig', [
-            'commande' => $commande,
+            'commande' => $this->getCommandDetails($commande),
         ]);
     }
 
