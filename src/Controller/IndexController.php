@@ -26,20 +26,7 @@ class IndexController extends AbstractController
         $this->commandeLigneRepository = $commandeLigneRepository;
     }
 
-    private function calculateTotal(Commande $commande) : float {
-        $total = 0;
-        $commandesLignes = $commande->getCommandeLignes();
-        if(!$commandesLignes){
-            return 0;
-        }
-
-        foreach ($commandesLignes as $commandesLigne){
-            $total += $commandesLigne->getQuantity() * $commandesLigne->getProduit()->getPrice();
-        }
-
-        return $total;
-    }
-
+   
     #[Route('/', name: 'app_index')]
     public function index(): Response
     {

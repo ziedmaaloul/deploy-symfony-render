@@ -106,7 +106,7 @@ class CommandeController extends AbstractController
     #[Route('/{id}', name: 'app_commande_show', methods: ['GET'])]
     public function show(Commande $commande): Response
     {
-        $commande = Utility::getCommandDetails($commande);
+        $commande = Utility::getCommandDetails($commande , $this->commandeLigneRepository);
         //dd($commande);
         return $this->render('commande/show.html.twig', [
             'commande' => $commande,
