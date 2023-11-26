@@ -49,6 +49,25 @@ class CommandeLigneRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function findBestSellingProductsThisMonth(): array
+    {
+        $startOfMonth = new \DateTime('first day of this month');
+        $endOfMonth = new \DateTime('last day of this month');
+
+        return $this->createQueryBuilder('cl')
+            ->select('cl.produit', 'SUM(cl.quantity) as totalQuantity')
+            ->join('cl.commande', 'c')
+            ->where('c.created_at >= :startOfMonth')
+            ->andWhere('c.created_at <= :endOfMonth')
+            ->groupBy('cl.produit')
+            ->orderBy('totalQuantity', 'DESC')
+            ->setMaxResults(7)  // Limite le résultat à 7 produits
+            ->setParameter('startOfMonth', $startOfMonth)
+            ->setParameter('endOfMonth', $endOfMonth)
+            ->getQuery()
+            ->getResult();
+    }
 //    /**
 //     * @return CommandeLigne[] Returns an array of CommandeLigne objects
 //     */

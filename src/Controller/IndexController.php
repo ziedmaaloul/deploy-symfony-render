@@ -26,6 +26,19 @@ class IndexController extends AbstractController
         $this->commandeLigneRepository = $commandeLigneRepository;
     }
 
+    protected function calculateFromArray($commandLines){
+
+        $sum = 0;
+        if(!$commandLines){
+            return 0;
+        }
+
+        foreach ($commandLines as $commandLine){
+            $sum += $commandLine->getProduit->getPrice() * $commandLine->getQuantity();
+        }
+
+        return $sum;
+    }
    
     #[Route('/', name: 'app_index')]
     public function index(): Response
@@ -33,14 +46,18 @@ class IndexController extends AbstractController
         $todayCommands =  $this->commandeRepository->findAllToday();
         $monthCommands = $this->commandeLigneRepository->findAllThisMonth();
         $yearCommands = $this->commandeLigneRepository->findAllThisYear();
-
-        dd([
-            "today" => $todayCommands,
-            "month" => $monthCommands,
-            "year" => $yearCommands
-        ]);
-        dd($todayCommands);
+        $products = $this->commandeLigneRepository->findBestSellingProductsThisMonth();
+        // dd([
+        //     "today" => $todayCommands,
+        //     "month" => $monthCommands,
+        //     "year" => $yearCommands,
+        //     "products" => $products
+        // ]);
+        // dd($todayCommands);
         return $this->render('index/index.html.twig', [
+            'todayCommands' => count($todayCommands),
+            'thisMonthRevenue' => $this->calculateFromArray($monthCommands),
+            'thisYearRevenue' => $this->calculateFromArray($yearCommands),
             'controller_name' => 'IndexController',
         ]);
     }

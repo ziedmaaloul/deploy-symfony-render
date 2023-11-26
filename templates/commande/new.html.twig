@@ -4,13 +4,13 @@
 {% block body %}
 
 	<style>
-		li > div > label {
-			;
-			/* display: none; */
-		}
-
 		li {
 			list-style: none;
+		}
+
+		li > div > label.required {
+			font-weight: bold;
+			color: #113679;
 		}
 	</style>
 	{{ form_start(form) }}
