@@ -5,20 +5,27 @@
 
 	<style>
 		li > div > label {
-			display: none;
+			;
+			/* display: none; */
+		}
+
+		li {
+			list-style: none;
 		}
 	</style>
 	{{ form_start(form) }}
 	{{ form_row(form.fournisseur) }}
 
-	<h2>Command Lines</h2>
+	<h5 class="card-title">Command Lines</h5>
 	<ul class="command-lines" data-prototype="{{ form_row(form.commandeLignes.vars.prototype)|e }}">
 		{{ form_errors(form.commandeLignes) }}
 		{{ form_widget(form.commandeLignes) | raw }}
 	</ul>
 
 	<div class="display-flex">
-		<button type="button" class="btn add-item">Add Command Line</button>
+		<button type="button" class="btn btn-primary">
+			<i class="bi bi-plus me-1"></i>
+			Add Command Line</button>
 		<button type="submit" class="btn btn-primary">Save</button>
 	</div>
 	{{ form_end(form) }}
