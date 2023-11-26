@@ -21,6 +21,21 @@ class CommandeRepository extends ServiceEntityRepository
         parent::__construct($registry, Commande::class);
     }
 
+    public function findAllToday(): array
+    {
+        $now = new \DateTime('today');
+        $endOfDay = new \DateTime('tomorrow');
+
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.created_at >= :startOfDay')
+            ->andWhere('c.created_at < :endOfDay')
+            ->setParameter('startOfDay', $now)
+            ->setParameter('endOfDay', $endOfDay)
+            ->getQuery()
+            ->getResult();
+    }
+    
+
 //    /**
 //     * @return Commande[] Returns an array of Commande objects
 //     */
