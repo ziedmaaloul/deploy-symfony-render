@@ -90,8 +90,8 @@
 				<td>
 					<img src="{{ligne.produit.image}}" width="100px"/></td>
 				<td>{{ligne.quantity}}</td>
-				<td>{{ligne.produit.price}}</td>
-				<td>{{ ligne.quantity * ligne.produit.price }}</td>
+				<td>{{ligne.produit.price|number_format(3, '.', '')}}</td>
+				<td>{{ ligne.quantity * ligne.produit.price|number_format(3, '.', '') }}</td>
 			</tr>
 		{% endfor %}
 
@@ -100,7 +100,7 @@
 
 <div class="invoice-footer">
 <p class="total"><b>Total :</b> 
-		{{commande.total}}
+		{{commande.total|number_format(3, '.', '')}}
 		TND
 	</p>
 </div></div><div class="print-button">
