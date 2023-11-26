@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-{% block title %}Create a new Commande
+{% block title %}Créer une nouvelle commande
 {% endblock %}
 {% block body %}
 
@@ -16,7 +16,7 @@
 	{{ form_start(form) }}
 	{{ form_row(form.fournisseur) }}
 
-	<h5 class="card-title">Command Lines</h5>
+	<h5 class="card-title">Lignes de commande</h5>
 	<ul class="command-lines" data-prototype="{{ form_row(form.commandeLignes.vars.prototype)|e }}">
 		{{ form_errors(form.commandeLignes) }}
 		{{ form_widget(form.commandeLignes) | raw }}
@@ -25,8 +25,8 @@
 	<div class="display-flex" style="margin: auto;">
 		<button type="button" class="btn btn-warning add-item">
 			<i class="bi bi-plus me-1"></i>
-			Add Command Line</button>
-		<button type="submit" class="btn btn-primary" style="margin-left: 5px;">Save</button>
+			Ajouter une ligne de commande</button>
+		<button type="submit" class="btn btn-primary" style="margin-left: 5px;">Enregistrer</button>
 	</div>
 	{{ form_end(form) }}
 
